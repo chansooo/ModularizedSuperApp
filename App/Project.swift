@@ -19,7 +19,9 @@ let project = Project(
             sources: ["Sources/**"],
             dependencies: [
                 .project(target: "DataImpl", path: "../Data"),
-                .project(target: "Data", path: "../Data")
+                .project(target: "Data", path: "../Data"),
+                .project(target: "Finance", path: "../Features/Finance"),
+                .project(target: "ResourceKit", path: "../ResourceKit")
             ]
         )
     ]
