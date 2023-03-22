@@ -39,11 +39,15 @@ extension Project {
     }
     
     public static func framework(name: String,
-                                 platform: Platform, iOSTargetVersion: String,
-                                 dependencies: [TargetDependency] = []) -> Project {
+                                 platform: Platform,
+                                 iOSTargetVersion: String,
+                                 dependencies: [TargetDependency] = [],
+                                 infoPlist: [String:InfoPlist.Value] = [:]
+    ) -> Project {
         let targets = makeFrameworkTargets(name: name,
                                            platform: platform,
                                            iOSTargetVersion: iOSTargetVersion,
+                                           infoPlist: infoPlist,
                                            dependencies: dependencies)
         return Project(name: name,
                        organizationName: organizationName,
@@ -167,13 +171,14 @@ private extension Project {
     }
 
     
-    static func makeFrameworkTargets(name: String, platform: Platform, iOSTargetVersion: String, dependencies: [TargetDependency] = []) -> [Target] {
+    static func makeFrameworkTargets(name: String, platform: Platform, iOSTargetVersion: String, infoPlist: [String:InfoPlist.Value] = [:] ,dependencies: [TargetDependency] = []) -> [Target] {
         let sources = Target(name: name,
                              platform: platform,
                              product: .framework,
                              bundleId: "team.io.\(name)",
                              deploymentTarget: .iOS(targetVersion: iOSTargetVersion, devices: [.iphone]),
-                             infoPlist: .default,
+                             infoPlist: .extendingDefault(with: infoPlist),
+//                             infoPlist: .default,
                              sources: ["Sources/**"],
                              resources: ["Resources/**"],
                              dependencies: dependencies)
