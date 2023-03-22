@@ -14,7 +14,7 @@ let project = Project(
         Target(
             name: "Finance",
             platform: .iOS,
-            product: .app,
+            product: .framework,
             bundleId: "com.chansoo.Finance",
             sources: ["Sources/**"],
             dependencies: [
