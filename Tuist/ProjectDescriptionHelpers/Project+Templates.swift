@@ -146,6 +146,7 @@ private extension Project {
                       ),
                       infoPlist: .default,
                       sources: ["Sources/Implement/**"],
+//                      sources: ["\(name)/Sources/Implement/**"],
 //                      resources: ["Resources/**"],
                       dependencies: dependencies)
     }
@@ -157,17 +158,17 @@ private extension Project {
         dependencies: [TargetDependency] = []
     ) -> Target {
         return Target(name: name,
-                             platform: platform,
-                             product: .staticLibrary,
-                             bundleId: "team.io.\(name)",
-                             deploymentTarget: .iOS(
-                                targetVersion: iOSTargetVersion,
-                                devices: [.iphone]
-                             ),
-                             infoPlist: .default,
-                             sources: ["Sources/Interface/**"],
-//                             resources: ["Resources/**"],
-                             dependencies: dependencies)
+                      platform: platform,
+                      product: .staticLibrary,
+                      bundleId: "team.io.\(name)",
+                      deploymentTarget: .iOS(
+                        targetVersion: iOSTargetVersion,
+                        devices: [.iphone]
+                      ),
+                      infoPlist: .default,
+                      sources: ["\(name)/Sources/Implement/**"],
+                      //                             resources: ["Resources/**"],
+                      dependencies: dependencies)
     }
 
     
