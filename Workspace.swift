@@ -11,5 +11,5 @@ let appName = "ModularizedSuperApp"
 
 let workspace = Workspace(
     name: appName,
-    projects: ["Projects/**"]
+    projects: ["./**"]
 )
