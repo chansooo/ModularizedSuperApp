@@ -159,7 +159,7 @@ private extension Project {
     ) -> Target {
         return Target(name: name,
                       platform: platform,
-                      product: .staticLibrary,
+                      product: .framework,
                       bundleId: "team.io.\(name)",
                       deploymentTarget: .iOS(
                         targetVersion: iOSTargetVersion,

@@ -18,6 +18,7 @@ let project = Project(
             bundleId: "com.chansoo.FinanceUserInterface",
             sources: ["Sources/**"],
             dependencies: [
+                .project(target: "FinanceData", path: "../FinanceData")
             ]
         ),
     ]
