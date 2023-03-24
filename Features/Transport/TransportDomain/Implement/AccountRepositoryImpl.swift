@@ -8,7 +8,4 @@ import Data
 
 final class AccountRepositoryImpl: AccountRepository {
     
-    func getAccount() -> Account {
-        return Account(name: "chansoo", age: 13)
-    }
 }

@@ -9,13 +9,13 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project(
-    name: "Finance",
+    name: "FinanceUserInterface",
     targets: [
         Target(
-            name: "Finance",
+            name: "FinanceUserInterface",
             platform: .iOS,
             product: .framework,
-            bundleId: "com.chansoo.Finance",
+            bundleId: "com.chansoo.FinanceUserInterface",
             sources: ["Sources/**"],
             dependencies: [
             ]

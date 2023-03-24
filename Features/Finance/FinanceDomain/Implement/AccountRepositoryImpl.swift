@@ -4,5 +4,8 @@
 //
 //  Created by 김찬수 on 2023/03/21.
 //
+import Data
 
-let a = 10
+final class AccountRepositoryImpl: AccountRepository {
+    
+}

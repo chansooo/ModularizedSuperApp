@@ -9,13 +9,13 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project(
-    name: "Profile",
+    name: "TransportUserInterface",
     targets: [
         Target(
-            name: "Profile",
+            name: "TransportUserInterface",
             platform: .iOS,
-            product: .app,
-            bundleId: "com.chansoo.Profile",
+            product: .framework,
+            bundleId: "com.chansoo.TransportUserInterface",
             sources: ["Sources/**"],
             dependencies: [
             ]

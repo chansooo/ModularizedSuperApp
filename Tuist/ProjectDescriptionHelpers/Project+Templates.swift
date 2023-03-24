@@ -145,7 +145,7 @@ private extension Project {
                         devices: [.iphone]
                       ),
                       infoPlist: .default,
-                      sources: ["Sources/Implement/**"],
+                      sources: ["./Implement/**"],
 //                      sources: ["\(name)/Sources/Implement/**"],
 //                      resources: ["Resources/**"],
                       dependencies: dependencies)
@@ -166,7 +166,7 @@ private extension Project {
                         devices: [.iphone]
                       ),
                       infoPlist: .default,
-                      sources: ["\(name)/Sources/Implement/**"],
+                      sources: ["./Interface/**"],
                       //                             resources: ["Resources/**"],
                       dependencies: dependencies)
     }
