@@ -8,17 +8,10 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
-let project = Project(
+let project = Project.invertedDualTargetProject(
     name: "ProfileUserInterface",
-    targets: [
-        Target(
-            name: "ProfileUserInterface",
-            platform: .iOS,
-            product: .framework,
-            bundleId: "com.chansoo.ProfileUserInterface",
-            sources: ["Sources/**"],
-            dependencies: [
-            ]
-        ),
-    ]
+    platform: .iOS,
+    iOSTargetVersion: "14.0.0",
+    interfaceDependencies: [],
+    implementDependencies: []
 )

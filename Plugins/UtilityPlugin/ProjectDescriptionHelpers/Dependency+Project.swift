@@ -29,6 +29,7 @@ extension TargetDependency {
     
     public struct ResourceKit {}
 
+    public struct ThirdParty {}
 }
 
 public extension TargetDependency.Core {
@@ -127,4 +128,16 @@ public extension TargetDependency.Feature.Profile {
         static let Interface = project(name: "Data", isInterface: true)
         static let Implement = project(name: "Data", isInterface: false)
     }
+}
+
+// MARK: - ThirdParty
+
+public extension TargetDependency.ThirdParty {
+    static let base = [
+        RxSwift,
+        RIBs,
+    ]
+    static let RxSwift = TargetDependency.external(name: "RxSwift")
+    static let RxCocoa = TargetDependency.external(name: "RxCocoa")
+    static let RIBs = TargetDependency.external(name: "RIBs")
 }

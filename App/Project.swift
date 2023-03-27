@@ -7,6 +7,7 @@
 
 import ProjectDescription
 import ProjectDescriptionHelpers
+import UtilityPlugin
 
 let project = Project(
     name: "App",
@@ -18,8 +19,12 @@ let project = Project(
             bundleId: "com.chansoo.app",
             sources: ["Sources/**"],
             dependencies: [
-//                .project(target: "Finance", path: "../Features/Finance"),
-                .project(target: "ResourceKit", path: "../ResourceKit")
+                TargetDependency.Core.Core,
+                TargetDependency.Core.CoreImpl,
+                TargetDependency.ResourceKit.ResourceKit,
+                TargetDependency.Feature.Finance.UserInterface
+//                TargetDependency.Feature.Profile.UserInterface,
+//                TargetDependency.Feature.Profile.UserInterfaceImpl,
             ]
         )
     ]

@@ -8,17 +8,10 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
-let project = Project(
+let project = Project.invertedDualTargetProject(
     name: "TransportUserInterface",
-    targets: [
-        Target(
-            name: "TransportUserInterface",
-            platform: .iOS,
-            product: .framework,
-            bundleId: "com.chansoo.TransportUserInterface",
-            sources: ["Sources/**"],
-            dependencies: [
-            ]
-        ),
-    ]
+    platform: .iOS,
+    iOSTargetVersion: "14.0.0",
+    interfaceDependencies: [],
+    implementDependencies: []
 )

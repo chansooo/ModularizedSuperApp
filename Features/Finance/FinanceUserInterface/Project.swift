@@ -8,18 +8,26 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
-let project = Project(
+//let project = Project(
+//    name: "FinanceUserInterface",
+//    targets: [
+//        Target(
+//            name: "FinanceUserInterface",
+//            platform: .iOS,
+//            product: .staticLibrary,
+//            bundleId: "com.chansoo.FinanceUserInterface",
+//            sources: ["Sources/**"],
+//            dependencies: [
+//                .project(target: "FinanceData", path: "../FinanceData")
+//            ]
+//        ),
+//    ]
+//)
+
+let project = Project.invertedDualTargetProject(
     name: "FinanceUserInterface",
-    targets: [
-        Target(
-            name: "FinanceUserInterface",
-            platform: .iOS,
-            product: .framework,
-            bundleId: "com.chansoo.FinanceUserInterface",
-            sources: ["Sources/**"],
-            dependencies: [
-                .project(target: "FinanceData", path: "../FinanceData")
-            ]
-        ),
-    ]
+    platform: .iOS,
+    iOSTargetVersion: "14.0.0",
+    interfaceDependencies: [],
+    implementDependencies: []
 )
