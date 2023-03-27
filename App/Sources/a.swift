@@ -6,8 +6,9 @@
 //
 
 import UIKit
-
+import CoreImpl
 import ResourceKit
+import RxSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,9 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = UIViewController()
         window?.makeKeyAndVisible()
+        
         let b = ResourceKitAsset.angry.image
         let c = ResourceKitFontFamily.Pretendard.bold
-
+        let a = AccountRepositoryImpl()
+        let e = Observable.just("hi")
         return true
     }
 

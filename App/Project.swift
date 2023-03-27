@@ -19,13 +19,11 @@ let project = Project(
             bundleId: "com.chansoo.app",
             sources: ["Sources/**"],
             dependencies: [
-                TargetDependency.Core.Core,
-                TargetDependency.Core.CoreImpl,
-                TargetDependency.ResourceKit.ResourceKit,
-                TargetDependency.Feature.Finance.UserInterface
-//                TargetDependency.Feature.Profile.UserInterface,
-//                TargetDependency.Feature.Profile.UserInterfaceImpl,
-            ]
+                TargetDependency.Core.Interface,
+                TargetDependency.Core.Implement,
+                TargetDependency.ResourceKit.Implement,
+                TargetDependency.Feature.Finance.UserInterface.Implement,
+            ] + TargetDependency.ThirdParty.base
         )
     ]
 )

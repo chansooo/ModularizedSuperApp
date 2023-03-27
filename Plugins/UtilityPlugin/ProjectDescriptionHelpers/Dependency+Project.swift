@@ -40,8 +40,8 @@ public extension TargetDependency.Core {
                         path: .relativeToRoot("\(folderName)"))
     }
 
-    static let Core = project(name: "Core", isInterface: true)
-    static let CoreImpl = project(name: "Core", isInterface: false)
+    static let Interface = project(name: "Core", isInterface: true)
+    static let Implement = project(name: "Core", isInterface: false)
 }
 
 public extension TargetDependency.ResourceKit {
@@ -51,7 +51,7 @@ public extension TargetDependency.ResourceKit {
                         path: .relativeToRoot("\(folderName)"))
     }
 
-    static let ResourceKit = project(name: "ResourceKit")
+    static let Implement = project(name: "ResourceKit")
 }
 
 // MARK: - Features/Finance
@@ -137,7 +137,11 @@ public extension TargetDependency.ThirdParty {
         RxSwift,
         RIBs,
     ]
+    
     static let RxSwift = TargetDependency.external(name: "RxSwift")
     static let RxCocoa = TargetDependency.external(name: "RxCocoa")
     static let RIBs = TargetDependency.external(name: "RIBs")
+    static let RxGesture = TargetDependency.external(name: "RxGesture")
+    static let SnapKit = TargetDependency.external(name: "SnapKit")
+    static let Kingfisher = TargetDependency.external(name: "Kingfisher")
 }
