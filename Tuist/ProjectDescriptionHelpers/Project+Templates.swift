@@ -57,15 +57,16 @@ extension Project {
     /// 현재 경로 내부의 Implement, Interface 두개의 디렉토리에 각각 Target을 가지는 Project를 만듭니다.
     /// interface와 implement에 필요한 dependency를 각각 주입해줍니다.
     /// implement는 자동으로 interface에 대한 종속성을 가지고 있습니다.
-    public static func inversedLibrary(
+    public static func invertedDualTargetProject(
         name: String,
         platform: Platform,
         iOSTargetVersion: String,
         interfaceDependencies: [TargetDependency] = [],
         implementDependencies: [TargetDependency] = []
+        
     ) -> Project {
 
-        let interfaceTarget = makeInterfaceStaticLibraryTarget(
+        let interfaceTarget = makeInterfaceDynamicFrameworkTarget(
             name: name,
             platform: platform,
             iOSTargetVersion: iOSTargetVersion,
@@ -79,6 +80,19 @@ extension Project {
             dependencies: implementDependencies + [.target(name: name)]
         )
         
+        let sampleApp = Target(name: "\(name)SampleApp",
+                               platform: platform,
+                               product: .app,
+                               bundleId: "team.io.\(name)SampleApp",
+                               deploymentTarget: .iOS(
+                                 targetVersion: iOSTargetVersion,
+                                 devices: [.iphone]
+                               ),
+                               infoPlist: .default,
+                               sources: ["./sampleApp/**"],
+                               dependencies: implementDependencies)
+
+        
         return Project(name: name,
                        organizationName: organizationName,
                        targets: [interfaceTarget, implementTarget])
@@ -86,49 +100,6 @@ extension Project {
 }
 
 private extension Project {
-    /// Resource 폴더 내부에 Interface 폴더는 프로토콜만 존재
-    /// Implement 폴더 내부에 프로토콜을 실제 구현한 부분이 존재.
-    /// Inject 해주는 부분만 뭐시기Impl를 import하면 됨.
-    static func makeNestedFrameworkTargets(name: String, platform: Platform, iOSTargetVersion: String, dependencies: [TargetDependency] = []) -> [Target] {
-        
-        
-        let interfaceSources = Target(name: name,
-                             platform: platform,
-                             product: .staticLibrary,
-                             bundleId: "team.io.\(name)",
-                             deploymentTarget: .iOS(
-                                targetVersion: iOSTargetVersion,
-                                devices: [.iphone]
-                             ),
-                             infoPlist: .default,
-                             sources: ["Sources/Interface/**"],
-//                             resources: ["Resources/**"],
-                             dependencies: dependencies)
-        
-        let ImplementSource = Target(name: "\(name)Impl",
-                              platform: platform,
-                              product: .staticLibrary,
-                              bundleId: "team.io.\(name)",
-                              deploymentTarget: .iOS(
-                                targetVersion: iOSTargetVersion,
-                                devices: [.iphone]
-                              ),
-                              infoPlist: .default,
-                              sources: ["Sources/Implement/**"],
- //                             resources: ["Resources/**"],
-                              dependencies: dependencies)
-//        let tests = Target(name: "\(name)Tests",
-//                           platform: platform,
-//                           product: .unitTests,
-//                           bundleId: "team.io.\(name)Tests",
-//                           infoPlist: .default,
-//                           sources: ["Tests/**"],
-//                           resources: [],
-//                           dependencies: [
-//                            .target(name: name)
-//                           ])
-        return [interfaceSources, ImplementSource]
-    }
     
     static func makeImplementStaticLibraryTarget(
         name: String,
@@ -151,7 +122,7 @@ private extension Project {
                       dependencies: dependencies)
     }
     
-    static func makeInterfaceStaticLibraryTarget(
+    static func makeInterfaceDynamicFrameworkTarget(
         name: String,
         platform: Platform,
         iOSTargetVersion: String,

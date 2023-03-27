@@ -10,7 +10,6 @@ import ProjectDescriptionHelpers
 
 let infoPlist: [String: InfoPlist.Value] = [
     "CFBundleDevelopmentRegion": "ko_KR",
-    "NSLocationAlwaysAndWhenInUseUsageDescription": "가까운 위치의 사용자를 파악하기 위해 위치 확인 권한이 필요합니다.",
     "UIAppFonts": [
         "Item 0": "Pretendard-Medium.otf",
         "Item 1": "Pretendard-Regular.otf",
