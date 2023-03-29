@@ -1,15 +1,15 @@
 //
-//  Project.swift
-//  ProjectDescriptionHelpers
+//  {{ name }}AppDelegate.swift
 //
-//  Created by 김찬수 on 2023/03/21.
+//  Created by 김찬수
 //
 
 import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.invertedDualTargetProject(
-    name: "Core",
+    name: "{{ name }}Data",
     platform: .iOS,
     iOSTargetVersion: "14.0.0"
 )
+
