@@ -1,8 +1,9 @@
 //
-//  Project.swift
-//  ProjectDescriptionHelpers
+//  AppProject.swift
 //
-//  Created by 김찬수 on 2023/03/21.
+//  ModulariedSuperApp
+//
+//  Created by 김찬수
 //
 
 import ProjectDescription
@@ -19,10 +20,7 @@ let project = Project(
             bundleId: "com.chansoo.app",
             sources: ["Sources/**"],
             dependencies: [
-                TargetDependency.Core.Interface,
-                TargetDependency.Core.Implement,
-                TargetDependency.ResourceKit.Implement,
-                TargetDependency.Feature.Finance.UserInterface.Implement,
+
             ] + TargetDependency.ThirdParty.base
         )
     ]

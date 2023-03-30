@@ -7,10 +7,14 @@
 
 import ProjectDescription
 
+let AppName: Template.Attribute = .required("name")
+//let author: Template.Attribute = .required("author")
+//let currentDate: Template.Attribute = .required("currentDate")
+
 let App = Template(
     description: "This Template is for making App files",
     attributes: [
-        name,
+        AppName,
     ],
     items: [
         .file(
