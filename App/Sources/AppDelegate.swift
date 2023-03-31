@@ -8,6 +8,7 @@
 
 import UIKit
 import RIBs
+import ResourceKit
 
 @UIApplicationMain
 class ChansooAppDelegate: UIResponder, UIApplicationDelegate {

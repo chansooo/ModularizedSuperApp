@@ -11,7 +11,7 @@ import ProjectDescriptionHelpers
 let project = Project.invertedDualTargetProject(
     name: "ProfileDomain",
     platform: .iOS,
-    iOSTargetVersion: "14.0.0",
+    iOSTargetVersion: "15.0.0",
     interfaceDependencies: [],
     implementDependencies: []
 )

@@ -62,8 +62,9 @@ extension Project {
         platform: Platform,
         iOSTargetVersion: String,
         interfaceDependencies: [TargetDependency] = [],
-        implementDependencies: [TargetDependency] = []
-        
+        implementDependencies: [TargetDependency] = [],
+        demoApp: Bool = false,
+        infoPlist: InfoPlist = .default
     ) -> Project {
 
         let interfaceTarget = makeInterfaceDynamicFrameworkTarget(
@@ -91,12 +92,34 @@ extension Project {
                                infoPlist: .default,
                                sources: ["./sampleApp/**"],
                                dependencies: implementDependencies)
-
-        
+//        
+//        let demoapp = makeAppTargets(name: "\(name)DemoApp",
+//                                     platform: platform,
+//                                     iOSTargetVersion: iOSTargetVersion,
+//                                     infoPlist: String(contentsOf:infoPlist),
+//                                     dependencies: [.target(name: name)])
+//
         return Project(name: name,
                        organizationName: organizationName,
                        targets: [interfaceTarget, implementTarget])
     }
+    
+    public static func makeTarget(
+        name: String,
+        dependencies: [TargetDependency],
+        iOSTargetVersion: String = "15.0.0"
+    ) -> Target {
+        return Target(name: name,
+               platform: .iOS,
+               product: .framework,
+               bundleId: "team.io.\(name)",
+               deploymentTarget: .iOS(targetVersion: iOSTargetVersion, devices: [.iphone]),
+               infoPlist: .default,
+               sources: ["./\(name)/**"],
+    //           resources: ["Resources/**"],
+               dependencies: dependencies)
+    }
+
 }
 
 private extension Project {

@@ -10,8 +10,8 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project.invertedDualTargetProject(
-    name: "{{ name }}Domain",
+    name: "{{ name }}Data",
     platform: .iOS,
-    iOSTargetVersion: "14.0.0"
+    iOSTargetVersion: "15.0.0"
 )
 

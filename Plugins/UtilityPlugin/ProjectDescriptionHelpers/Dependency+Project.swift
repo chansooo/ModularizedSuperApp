@@ -25,7 +25,11 @@ extension TargetDependency {
         public struct BaseDependency {}
     }
     
-    public struct Core {}
+    public struct Core {
+        
+    }
+    
+    public struct Network {}
     
     public struct ResourceKit {}
 
@@ -40,8 +44,12 @@ public extension TargetDependency.Core {
                         path: .relativeToRoot("\(folderName)"))
     }
 
-    static let Interface = project(name: "Core", isInterface: true)
-    static let Implement = project(name: "Core", isInterface: false)
+//    static let Interface = project(name: "Core", isInterface: true)
+//    static let Implement = project(name: "Core", isInterface: false)
+    
+    static let DefaultsStore = project(name: "DefaultsStore", isInterface: true)
+    static let RIBsUtil = project(name: "RIBsUtil", isInterface: true)
+    static let SuperUI = project(name: "SuperUI", isInterface: true)
 }
 
 public extension TargetDependency.ResourceKit {
@@ -128,6 +136,21 @@ public extension TargetDependency.Feature.Profile {
         static let Interface = project(name: "Data", isInterface: true)
         static let Implement = project(name: "Data", isInterface: false)
     }
+}
+
+// MARK: - Network
+public extension TargetDependency.Network {
+    static let folderName = "Network"
+    static func project(name: String, isInterface: Bool) -> TargetDependency {
+        let postfix: String = isInterface ? "" : "Impl"
+        return .project(
+            target: "\(name)\(postfix)",
+            path: .relativeToRoot("Network")
+        )
+    }
+    
+    static let Interface = project(name: "Network", isInterface: true)
+    static let Implement = project(name: "Network", isInterface: false)
 }
 
 // MARK: - ThirdParty

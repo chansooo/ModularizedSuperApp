@@ -20,7 +20,7 @@ let infoPlist: [String: InfoPlist.Value] = [
 
 let project = Project.framework(name: "ResourceKit",
                                 platform: .iOS,
-                                iOSTargetVersion: "14.0.0",
+                                iOSTargetVersion: "15.0.0",
                                 dependencies: [
                                 ],
                                 infoPlist: infoPlist)

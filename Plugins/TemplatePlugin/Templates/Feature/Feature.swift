@@ -1,5 +1,5 @@
 //
-//  Test.swift
+//  Feature.swift
 //  TemplatePlugin
 //
 //  Created by 김찬수 on 2023/03/28.
@@ -11,7 +11,7 @@ let name: Template.Attribute = .required("name")
 let author: Template.Attribute = .required("author")
 let currentDate: Template.Attribute = .required("currentDate")
 
-let test = Template(
+let Feature = Template(
     description: "This Template is for making default files",
     attributes: [
         name,

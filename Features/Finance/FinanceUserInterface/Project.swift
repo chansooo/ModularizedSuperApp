@@ -27,7 +27,7 @@ import ProjectDescriptionHelpers
 let project = Project.invertedDualTargetProject(
     name: "FinanceUserInterface",
     platform: .iOS,
-    iOSTargetVersion: "14.0.0",
+    iOSTargetVersion: "15.0.0",
     interfaceDependencies: [],
     implementDependencies: []
 )
