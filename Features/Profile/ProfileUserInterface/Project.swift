@@ -7,11 +7,16 @@
 
 import ProjectDescription
 import ProjectDescriptionHelpers
+import UtilityPlugin
 
 let project = Project.invertedDualTargetProject(
     name: "ProfileUserInterface",
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
-    interfaceDependencies: [],
-    implementDependencies: []
+    interfaceDependencies: [
+        .ThirdParty.RIBs,
+    ],
+    implementDependencies: [
+        .ThirdParty.RIBs,
+    ]
 )

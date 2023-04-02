@@ -22,6 +22,12 @@ extension TargetDependency {
             public struct UserInterface {}
         }
         
+        public struct Home {
+            public struct Data {}
+            public struct Domain {}
+            public struct UserInterface {}
+        }
+        
         public struct BaseDependency {}
     }
     
@@ -93,7 +99,7 @@ public extension TargetDependency.Feature.Transport {
     static func project(name: String, isInterface: Bool) -> TargetDependency {
         let postfix: String = isInterface ? "" : "Impl"
         return .project(target: "\(folderName)\(name)\(postfix)",
-                        path: .relativeToRoot("Features/\(folderName)"))
+                        path: .relativeToRoot("Features/\(folderName)/\(folderName)\(name)"))
     }
 }
 
@@ -119,24 +125,48 @@ public extension TargetDependency.Feature.Profile {
     static func project(name: String, isInterface: Bool) -> TargetDependency {
         let postfix: String = isInterface ? "" : "Impl"
         return .project(target: "\(folderName)\(name)\(postfix)",
-                        path: .relativeToRoot("Features/\(name)"))
+                        path: .relativeToRoot("Features/\(folderName)/\(folderName)\(name)"))
     }
-    
     struct UserInterface {
-        static let Interface = project(name: "UserInterface", isInterface: true)
-        static let Implement = project(name: "UserInterface", isInterface: false)
+        public static let Interface = project(name: "UserInterface", isInterface: true)
+        public static let Implement = project(name: "UserInterface", isInterface: false)
     }
     
     struct Domain {
-        static let Interface = project(name: "Domain", isInterface: true)
-        static let Implement = project(name: "Domain", isInterface: false)
+        public static let Interface = project(name: "Domain", isInterface: true)
+        public static let Implement = project(name: "Domain", isInterface: false)
     }
     
     struct Data {
-        static let Interface = project(name: "Data", isInterface: true)
-        static let Implement = project(name: "Data", isInterface: false)
+        public static let Interface = project(name: "Data", isInterface: true)
+        public static let Implement = project(name: "Data", isInterface: false)
     }
 }
+
+// MARK: - Features/Home
+public extension TargetDependency.Feature.Home {
+    static let folderName = "Home"
+    static func project(name: String, isInterface: Bool) -> TargetDependency {
+        let postfix: String = isInterface ? "" : "Impl"
+        return .project(target: "\(folderName)\(name)\(postfix)",
+                        path: .relativeToRoot("Features/\(folderName)/\(folderName)\(name)"))
+    }}
+
+public extension TargetDependency.Feature.Home.UserInterface {
+    static let Interface = TargetDependency.Feature.Transport.project(name: "UserInterface", isInterface: true)
+    static let Implement = TargetDependency.Feature.Transport.project(name: "UserInterface", isInterface: false)
+}
+
+public extension TargetDependency.Feature.Home.Domain {
+    static let Interface = TargetDependency.Feature.Transport.project(name: "Domain", isInterface: true)
+    static let Implement = TargetDependency.Feature.Transport.project(name: "Domain", isInterface: false)
+}
+
+public extension TargetDependency.Feature.Home.Data {
+    static let Interface = TargetDependency.Feature.Transport.project(name: "Data", isInterface: true)
+    static let Implement = TargetDependency.Feature.Transport.project(name: "Data", isInterface: false)
+}
+
 
 // MARK: - Network
 public extension TargetDependency.Network {
@@ -162,6 +192,7 @@ public extension TargetDependency.ThirdParty {
     ]
     
     static let RxSwift = TargetDependency.external(name: "RxSwift")
+    static let RxRelay = TargetDependency.external(name: "RxRelay")
     static let RxCocoa = TargetDependency.external(name: "RxCocoa")
     static let RIBs = TargetDependency.external(name: "RIBs")
     static let RxGesture = TargetDependency.external(name: "RxGesture")

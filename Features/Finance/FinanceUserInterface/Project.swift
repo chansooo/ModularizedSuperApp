@@ -7,27 +7,26 @@
 
 import ProjectDescription
 import ProjectDescriptionHelpers
-
-//let project = Project(
-//    name: "FinanceUserInterface",
-//    targets: [
-//        Target(
-//            name: "FinanceUserInterface",
-//            platform: .iOS,
-//            product: .staticLibrary,
-//            bundleId: "com.chansoo.FinanceUserInterface",
-//            sources: ["Sources/**"],
-//            dependencies: [
-//                .project(target: "FinanceData", path: "../FinanceData")
-//            ]
-//        ),
-//    ]
-//)
+import UtilityPlugin
 
 let project = Project.invertedDualTargetProject(
     name: "FinanceUserInterface",
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
-    interfaceDependencies: [],
-    implementDependencies: []
+    interfaceDependencies: [
+        .Feature.Finance.Domain.Interface,
+        .Core.RIBsUtil,
+        .Core.SuperUI,
+        .ThirdParty.RIBs,
+        .ThirdParty.RxSwift,
+    ],
+    implementDependencies: [
+        .Feature.Finance.Domain.Interface,
+        .Feature.Finance.Data.Interface, // usecase 분리 후 삭제
+        .Core.DefaultsStore,
+        .Core.RIBsUtil,
+        .Core.SuperUI,
+        .ThirdParty.RIBs,
+        .ThirdParty.RxSwift,
+    ]
 )
