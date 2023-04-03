@@ -25,11 +25,11 @@ let Feature = Template(
         ),
         .file(
             path: .featureBasePath + "/\(name)Data/Implement/a.swift",
-            templatePath: "AppDelegate.stencil"
+            templatePath: "dummy.stencil"
         ),
         .file(
             path: .featureBasePath + "/\(name)Data/Interface/a.swift",
-            templatePath: "AppDelegate.stencil"
+            templatePath: "dummy.stencil"
         ),
         
         .file(
@@ -38,11 +38,11 @@ let Feature = Template(
         ),
         .file(
             path: .featureBasePath + "/\(name)Domain/Implement/a.swift",
-            templatePath: "AppDelegate.stencil"
+            templatePath: "dummy.stencil"
         ),
         .file(
             path: .featureBasePath + "/\(name)Domain/Interface/a.swift",
-            templatePath: "AppDelegate.stencil"
+            templatePath: "dummy.stencil"
         ),
         .file(
             path: .featureBasePath + "/\(name)UserInterface/Project.swift",
@@ -50,11 +50,11 @@ let Feature = Template(
         ),
         .file(
             path: .featureBasePath + "/\(name)UserInterface/Implement/a.swift",
-            templatePath: "AppDelegate.stencil"
+            templatePath: "dummy.stencil"
         ),
         .file(
             path: .featureBasePath + "/\(name)UserInterface/Interface/a.swift",
-            templatePath: "AppDelegate.stencil"
+            templatePath: "dummy.stencil"
         )
         
     ]
