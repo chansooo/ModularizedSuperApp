@@ -153,18 +153,18 @@ public extension TargetDependency.Feature.Home {
     }}
 
 public extension TargetDependency.Feature.Home.UserInterface {
-    static let Interface = TargetDependency.Feature.Transport.project(name: "UserInterface", isInterface: true)
-    static let Implement = TargetDependency.Feature.Transport.project(name: "UserInterface", isInterface: false)
+    static let Interface = TargetDependency.Feature.Home.project(name: "UserInterface", isInterface: true)
+    static let Implement = TargetDependency.Feature.Home.project(name: "UserInterface", isInterface: false)
 }
 
 public extension TargetDependency.Feature.Home.Domain {
-    static let Interface = TargetDependency.Feature.Transport.project(name: "Domain", isInterface: true)
-    static let Implement = TargetDependency.Feature.Transport.project(name: "Domain", isInterface: false)
+    static let Interface = TargetDependency.Feature.Home.project(name: "Domain", isInterface: true)
+    static let Implement = TargetDependency.Feature.Home.project(name: "Domain", isInterface: false)
 }
 
 public extension TargetDependency.Feature.Home.Data {
-    static let Interface = TargetDependency.Feature.Transport.project(name: "Data", isInterface: true)
-    static let Implement = TargetDependency.Feature.Transport.project(name: "Data", isInterface: false)
+    static let Interface = TargetDependency.Feature.Home.project(name: "Data", isInterface: true)
+    static let Implement = TargetDependency.Feature.Home.project(name: "Data", isInterface: false)
 }
 
 
