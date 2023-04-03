@@ -15,18 +15,26 @@ let project = Project.invertedDualTargetProject(
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
         .Feature.Finance.Domain.Interface,
+        .Feature.Finance.Data.Interface,
+        
         .Core.RIBsUtil,
         .Core.SuperUI,
+        .Core.DefaultsStore,
+        
         .ThirdParty.RIBs,
         .ThirdParty.RxSwift,
+        .ThirdParty.RxRelay,
     ],
     implementDependencies: [
         .Feature.Finance.Domain.Interface,
-        .Feature.Finance.Data.Interface, // usecase 분리 후 삭제
-        .Core.DefaultsStore,
+        .Feature.Finance.Data.Interface,
+        
         .Core.RIBsUtil,
         .Core.SuperUI,
+        .Core.DefaultsStore,
+        
         .ThirdParty.RIBs,
         .ThirdParty.RxSwift,
+        .ThirdParty.RxRelay,
     ]
 )

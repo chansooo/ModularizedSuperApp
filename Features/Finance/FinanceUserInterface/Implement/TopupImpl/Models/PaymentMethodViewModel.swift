@@ -8,12 +8,12 @@
 import UIKit
 import FinanceDomain
 
-struct PaymentMethodViewModel {
-    let name: String
-    let digits: String
-    let color: UIColor
+public struct PaymentMethodViewModel {
+    public let name: String
+    public let digits: String
+    public let color: UIColor
     
-    init(paymentModel: PaymentMethod) {
+    public init(paymentModel: PaymentMethod) {
         self.name = paymentModel.name
         self.digits = "**** \(paymentModel.digits)"
         self.color = UIColor(hex: paymentModel.color) ?? .systemGray2
