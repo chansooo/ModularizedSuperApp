@@ -5,6 +5,11 @@ import FinanceUserInterface
 import HomeUserInterface
 import ProfileUserInterface
 
+import FinanceUserInterfaceImpl
+import HomeUserInterfaceImpl
+import ProfileUserInterfaceImpl
+
+
 protocol AppRootDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
