@@ -10,6 +10,8 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 import UtilityPlugin
 
+
+
 let project = Project(
     name: "App",
     targets: [
@@ -18,7 +20,22 @@ let project = Project(
             platform: .iOS,
             product: .app,
             bundleId: "com.chansoo.app",
+            infoPlist: InfoPlist.extendingDefault(
+                with:
+                    [
+                        "CFBundleDevelopmentRegion": "ko_KR",
+                        "Launch screen interface file base name": "../Resources/LaunchScreen"
+                    ]
+                
+            ),
             sources: ["Sources/**"],
+//            resources: ResourceFileElements(resources: [
+//                .glob(
+//                    pattern: "Resources/**",
+//                    excluding: ["Resources/Info.plist"]
+//                )
+//            ]),
+            resources: ["Resources/**"],
             dependencies: [
 //                .ResourceKit.Implement,
                 
@@ -26,8 +43,8 @@ let project = Project(
 //                .ThirdParty.RxRelay,
 //                .ThirdParty.RxSwift,
                 
-                .Network.Implement,
-                .Network.Interface,
+                .CSNetwork.Implement,
+                .CSNetwork.Interface,
                 
                 .Feature.Finance.Data.Interface,
                 .Feature.Finance.Domain.Interface,
@@ -64,3 +81,4 @@ let project = Project(
         )
     ]
 )
+
