@@ -24,7 +24,9 @@ let project = Project(
                 with:
                     [
                         "CFBundleDevelopmentRegion": "ko_KR",
-                        "Launch screen interface file base name": "../Resources/LaunchScreen"
+                        "CFBundleShortVersionString": "1.0",
+                        "CFBundleVersion": "1",
+                        "UILaunchStoryboardName": "LaunchScreen"
                     ]
                 
             ),
