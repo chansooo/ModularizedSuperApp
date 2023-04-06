@@ -14,13 +14,20 @@ let project = Project.invertedDualTargetProject(
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
+        .Network.Interface,
+        
         .ThirdParty.RxSwift,
         .ThirdParty.RxRelay,
-        .Network.Interface,
+        
+        .Feature.Finance.Domain.Interface,
+        
     ],
     implementDependencies: [
         .Network.Interface,
+        
         .ThirdParty.RxSwift,
         .ThirdParty.RxRelay,
+        
+        .Feature.Finance.Domain.Interface,
     ]
 )

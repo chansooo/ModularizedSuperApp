@@ -20,7 +20,7 @@ let project = Project(name: "Core",
                             name: "SuperUI",
                             dependencies: [
                                 .ThirdParty.RIBs,
-                                .ThirdParty.RxSwift,
+//                                .ThirdParty.RxSwift,
                                 .Core.RIBsUtil,
                             ]
                         ),
@@ -28,7 +28,7 @@ let project = Project(name: "Core",
                             name: "RIBsUtil",
                             dependencies: [
                                 .ThirdParty.RIBs,
-                                .ThirdParty.RxSwift,
+//                                .ThirdParty.RxSwift,
                             ]
                         )
                       ])
