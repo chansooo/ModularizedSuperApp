@@ -27,8 +27,8 @@ import FinanceDataImpl
 import FinanceDomain
 import FinanceDomainImpl
 
-import Network
-import NetworkImpl
+import CSNetwork
+import CSNetworkImpl
 
 final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, ProfileHomeDependency, TransportHomeDependency, TopupDependency, AddPaymentMethodDependency  {
 

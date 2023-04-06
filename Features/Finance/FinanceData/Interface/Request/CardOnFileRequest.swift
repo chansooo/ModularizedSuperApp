@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Network
+import CSNetwork
 import FinanceDomain
 
 public struct CardOnFileRequest: Request {
