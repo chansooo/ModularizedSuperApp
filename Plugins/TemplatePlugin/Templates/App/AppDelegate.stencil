@@ -17,7 +17,6 @@ class {{ name }}AppDelegate: UIResponder, UIApplicationDelegate {
         
         let result = {{name}}Builder(dependency: {{name}}Component()).build()
         self.launchRouter = result.launchRouter
-//        self.urlHandler = result.urlHandler
         launchRouter?.launch(from:window)
         
         return true

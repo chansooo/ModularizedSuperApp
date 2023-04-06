@@ -25,9 +25,13 @@ let App = Template(
             path: "App/Sources/AppDelegate.swift",
             templatePath: "AppDelegate.stencil"
         ),
+//        .file(
+//            path: "App/Sources/SceneDelegate.swift",
+//            templatePath: "SceneDelegate.stencil"
+//        ),
         .file(
-            path: "App/Sources/SceneDelegate.swift",
-            templatePath: "SceneDelegate.stencil"
+            path: "App/Resources/LaunchScreen.storyboard",
+            templatePath: "LaunchScreen.stencil"
         ),
 
     ]
