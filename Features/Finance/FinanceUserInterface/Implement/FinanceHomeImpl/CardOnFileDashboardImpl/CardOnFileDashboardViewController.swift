@@ -75,6 +75,7 @@ final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashb
     }
     
     func update(with viewModels: [PaymentMethodViewModel]) {
+        
         cardOnFileStackview.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
         let views = viewModels.map(PaymentMethodView.init)

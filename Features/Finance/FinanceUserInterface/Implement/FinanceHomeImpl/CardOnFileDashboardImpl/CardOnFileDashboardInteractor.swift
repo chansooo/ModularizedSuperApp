@@ -50,10 +50,10 @@ final class CardOnFileDashboardInteractor: PresentableInteractor<CardOnFileDashb
         super.didBecomeActive()
         // TODO: Implement business logic here.
         dependency.cardsOnFileRepository.cardOnFile
-            .subscribe(on: MainScheduler.instance)
-            .subscribe(onNext: { models in
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] models in
                 let viewmodels = models.prefix(3).map(PaymentMethodViewModel.init)
-                self.presenter.update(with: viewmodels)
+                self?.presenter.update(with: viewmodels)
             })
             .disposed(by: disposebag)
     }

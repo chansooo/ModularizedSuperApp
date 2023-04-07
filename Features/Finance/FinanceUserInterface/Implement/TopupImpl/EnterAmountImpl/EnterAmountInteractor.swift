@@ -82,7 +82,7 @@ final class EnterAmountInteractor: PresentableInteractor<EnterAmountPresentable>
             amount: amount,
             paymentMethodID: dependency.selectedPaymentMethod.value.id
         )
-        .subscribe(on: MainScheduler.instance)
+        .observe(on: MainScheduler.instance)
         .subscribe(onNext: { [weak self] in
             self?.listener?.enterAmountDidFinishTopup()
         }, onCompleted: { [weak self] in

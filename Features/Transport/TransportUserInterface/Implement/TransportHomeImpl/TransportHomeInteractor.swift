@@ -46,7 +46,7 @@ final class TransportHomeInteractor: PresentableInteractor<TransportHomePresenta
         super.didBecomeActive()
         
         dependency.superPayBalance
-            .subscribe(on: MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] balance in
                 if let balanceText = Formatter.balanceFormatter.string(from: NSNumber(value: balance)) {
                     self?.presenter.setSuperPayBalance(balanceText)

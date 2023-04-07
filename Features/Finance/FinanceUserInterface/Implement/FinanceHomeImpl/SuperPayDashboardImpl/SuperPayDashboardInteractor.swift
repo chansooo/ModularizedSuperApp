@@ -56,7 +56,7 @@ final class SuperPayDashboardInteractor: PresentableInteractor<SuperPayDashboard
         super.didBecomeActive()
         // TODO: Implement business logic here.
         dependency.balance
-            .subscribe(on: MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] balance in
                 self?.dependency.balanceFormatter.string(from: NSNumber(value: balance)).map { self?.presenter.updateBalance($0) }
             })
