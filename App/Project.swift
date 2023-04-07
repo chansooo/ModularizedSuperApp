@@ -31,12 +31,6 @@ let project = Project(
                 
             ),
             sources: ["Sources/**"],
-//            resources: ResourceFileElements(resources: [
-//                .glob(
-//                    pattern: "Resources/**",
-//                    excluding: ["Resources/Info.plist"]
-//                )
-//            ]),
             resources: ["Resources/**"],
             dependencies: [
 //                .ResourceKit.Implement,
