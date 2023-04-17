@@ -11,6 +11,7 @@ import RIBs
 import RxSwift
 import RxRelay
 
+import FinanceDomain
 import FinanceUserInterface
 
 protocol SuperPayDashboardRouting: ViewableRouting {
@@ -24,7 +25,7 @@ protocol SuperPayDashboardPresentable: Presentable {
 }
 // interactor 생성시 필요한 파라미터들 명세
 protocol SuperPayDashboardInteractorDependency {
-    var balance: BehaviorRelay<Double> { get }
+    var fetchBalanceUseCase: FetchBalanceUseCase { get }
     var balanceFormatter: NumberFormatter { get }
 }
 
@@ -55,7 +56,7 @@ final class SuperPayDashboardInteractor: PresentableInteractor<SuperPayDashboard
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
-        dependency.balance
+        dependency.fetchBalanceUseCase.execute()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] balance in
                 self?.dependency.balanceFormatter.string(from: NSNumber(value: balance)).map { self?.presenter.updateBalance($0) }

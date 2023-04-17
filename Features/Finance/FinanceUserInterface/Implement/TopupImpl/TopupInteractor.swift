@@ -6,13 +6,16 @@
 //
 
 import RIBs
+
 import RIBsUtil
-import FinanceData
-import FinanceDomain
 import SuperUI
-import FinanceUserInterface
 import DefaultsStore
+
+import FinanceDomain
+import FinanceUserInterface
+
 import RxRelay
+import RxSwift
 
 protocol TopupRouting: Routing {
     func cleanupViews()
@@ -30,7 +33,7 @@ protocol TopupRouting: Routing {
 }
 
 protocol TopupInteractorDependency {
-    var cardsOnFileRepository: CardOnFileRepository { get }
+    var fetchCardsUseCase: FetchCardsUseCase { get }
     var paymentMethodStream: BehaviorRelay<PaymentMethod> { get }
 //    var defaultStore: DefaultsStore { get }
 }
@@ -46,10 +49,9 @@ final class TopupInteractor: Interactor, TopupInteractable, AddPaymentMethodList
 
     private let dependency: TopupInteractorDependency
     
-    private var paymentMethods: [PaymentMethod] {
-        dependency.cardsOnFileRepository.cardOnFile.value
-    }
+    private var disposebag = DisposeBag()
     
+    private var paymentMethods: [PaymentMethod] = []
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
     init(dependency: TopupInteractorDependency) {
@@ -62,15 +64,21 @@ final class TopupInteractor: Interactor, TopupInteractable, AddPaymentMethodList
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
-        
-        if let card = dependency.cardsOnFileRepository.cardOnFile.value.first {
-            isEnterAmountRoot = true
-            dependency.paymentMethodStream.accept(card)
-            router?.attachEnterAmount()
-        } else {
-            isEnterAmountRoot = false
-            router?.attachAddPaymentMethod(closebuttonType: .close)
-        }
+        dependency.fetchCardsUseCase.execute()
+            .subscribe(onNext: { [weak self] paymentMethods in
+                guard let self = self else { return }
+                self.paymentMethods = paymentMethods
+                
+                if let card = paymentMethods.first {
+                    self.isEnterAmountRoot = true
+                    self.dependency.paymentMethodStream.accept(card)
+                    self.router?.attachEnterAmount()
+                } else {
+                    self.isEnterAmountRoot = false
+                    self.router?.attachAddPaymentMethod(closebuttonType: .close)
+                }
+            })
+            .disposed(by: disposebag)
     }
 
     override func willResignActive() {
@@ -110,6 +118,7 @@ final class TopupInteractor: Interactor, TopupInteractable, AddPaymentMethodList
     }
     
     func enteramountDidTapPaymentMethod() {
+        
         router?.attachCardOnFile(paymentMethod: paymentMethods)
     }
     

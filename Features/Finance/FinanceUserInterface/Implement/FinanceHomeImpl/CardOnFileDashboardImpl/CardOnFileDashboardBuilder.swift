@@ -6,20 +6,19 @@
 //
 
 import RIBs
-import FinanceData
+import FinanceDomain
 import FinanceUserInterface
 
 protocol CardOnFileDashboardDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
     // 여기는 부모에게 요청할 것들
-    var cardsOnFileRepository: CardOnFileRepository { get }
+    var fetchCardsUseCase: FetchCardsUseCase { get }
 }
 
 final class CardOnFileDashboardComponent: Component<CardOnFileDashboardDependency>, CardOnFileFashboardInteractorDependency {
-
-    var cardsOnFileRepository: CardOnFileRepository { dependency.cardsOnFileRepository }
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    
+    var fetchCardsUseCase: FetchCardsUseCase { dependency.fetchCardsUseCase }
 }
 
 // MARK: - Builder
