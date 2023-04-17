@@ -42,7 +42,7 @@ let App = Template(
             templatePath: "Dependencies.stencil"
         ),
         .file(
-            path: "App/AppDelegate/AppComponent.swift",
+            path: "App/Sources/AppComponent.swift",
             templatePath: "AppComponent.stencil"
         ),
     ]
