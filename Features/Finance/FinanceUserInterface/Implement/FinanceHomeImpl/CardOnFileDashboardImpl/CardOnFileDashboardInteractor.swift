@@ -7,7 +7,8 @@
 
 import RIBs
 import Foundation
-import FinanceData
+//import FinanceData
+import FinanceDomain
 import FinanceUserInterface
 import RxSwift
 import RxRelay
@@ -23,7 +24,8 @@ protocol CardOnFileDashboardPresentable: Presentable {
 }
 
 protocol CardOnFileFashboardInteractorDependency {
-    var cardsOnFileRepository: CardOnFileRepository { get }
+//    var cardsOnFileRepository: CardOnFileRepository { get }
+    var fetchCardsUseCase: FetchCardsUseCase { get }
 }
 
 final class CardOnFileDashboardInteractor: PresentableInteractor<CardOnFileDashboardPresentable>, CardOnFileDashboardInteractable, CardOnFileDashboardPresentableListener {
@@ -49,7 +51,7 @@ final class CardOnFileDashboardInteractor: PresentableInteractor<CardOnFileDashb
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
-        dependency.cardsOnFileRepository.cardOnFile
+        dependency.fetchCardsUseCase.execute()
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] models in
                 let viewmodels = models.prefix(3).map(PaymentMethodViewModel.init)

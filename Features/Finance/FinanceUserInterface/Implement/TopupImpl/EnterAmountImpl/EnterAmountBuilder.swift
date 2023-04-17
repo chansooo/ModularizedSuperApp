@@ -6,20 +6,22 @@
 //
 
 import RIBs
-import FinanceData
+
 import FinanceDomain
 import FinanceUserInterface
+
 import RxSwift
 import RxRelay
 
 protocol EnterAmountDependency: Dependency {
     var selectedPaymentMethod: BehaviorRelay<PaymentMethod> { get }
-    var superPayRepository: SuperPayRepository { get }
+    var topupBalanceUseCase: TopupBalanceUseCase { get }
+    
 }
 
 final class EnterAmountComponent: Component<EnterAmountDependency>, EnterAmountInteractorDependency {
+    var topupBalanceUseCase: TopupBalanceUseCase { dependency.topupBalanceUseCase }
     var selectedPaymentMethod: BehaviorRelay<PaymentMethod> { dependency.selectedPaymentMethod }
-    var superPayRepository: SuperPayRepository { dependency.superPayRepository }
 }
 
 // MARK: - Builder

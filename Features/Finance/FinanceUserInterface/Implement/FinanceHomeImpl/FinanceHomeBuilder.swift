@@ -1,26 +1,22 @@
 import RIBs
-import FinanceData
+
 import FinanceDomain
 import FinanceUserInterface
 import RxSwift
 import RxRelay
 
 public protocol FinanceHomeDependency: Dependency {
-    var cardsOnFileRepository: CardOnFileRepository { get }
-    var superPayRepository: SuperPayRepository { get }
+    var fetchBalanceUseCase: FetchBalanceUseCase { get }
+    var fetchCardsUseCase: FetchCardsUseCase { get }
     var topupBuildable: TopupBuildable { get }
     var addPaymentMethodBuildable: AddPaymentMethodBuildable { get }
 }
 
 final class FinanceHomeComponent: Component<FinanceHomeDependency>, SuperPayDashboardDependency, CardOnFileDashboardDependency {
-        
-    var cardsOnFileRepository: CardOnFileRepository { dependency.cardsOnFileRepository }
-    var superPayRepository: SuperPayRepository { dependency.superPayRepository }
-
-    var balance: BehaviorRelay<Double> { superPayRepository.balance }
     
+    var fetchBalanceUseCase: FetchBalanceUseCase { dependency.fetchBalanceUseCase }
+    var fetchCardsUseCase: FetchCardsUseCase { dependency.fetchCardsUseCase }
     var topupBuildable: TopupBuildable { dependency.topupBuildable }
-    
     var addPaymentMethodBuildable: AddPaymentMethodBuildable { dependency.addPaymentMethodBuildable }
 }
 

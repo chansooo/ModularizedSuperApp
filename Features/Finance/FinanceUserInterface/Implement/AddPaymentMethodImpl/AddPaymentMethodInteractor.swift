@@ -22,7 +22,8 @@ protocol AddPaymentMethodPresentable: Presentable {
 }
 
 protocol AddPaymentMethodInteractorDependency {
-    var cardOnFileRepository: CardOnFileRepository { get }
+//    var cardOnFileRepository: CardOnFileRepository { get }
+    var addPaymentMethodUseCase: AddPaymentMethodUseCase { get }
 }
 
 final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPresentable>, AddPaymentMethodInteractable, AddPaymentMethodPresentableListener {
@@ -61,7 +62,7 @@ final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPr
     
     func didTapConfirm(with number: String, cvc: String, expiry: String) {
         let info = AddPaymentMethodInfo(number: number, cvc: cvc, expriration: expiry)
-        dependency.cardOnFileRepository.addCard(info: info)
+        dependency.addPaymentMethodUseCase.execute(info: info)
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] method in
                 self?.listener?.addPaymentMethodDidAddCard(paymentMethod: method)
