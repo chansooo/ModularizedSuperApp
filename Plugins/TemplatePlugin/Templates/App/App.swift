@@ -33,7 +33,18 @@ let App = Template(
             path: "App/Resources/LaunchScreen.storyboard",
             templatePath: "LaunchScreen.stencil"
         ),
-
+        .file(
+            path: "Tuist/ProjectDescriptionHelpers/Project+Templates.swift",
+            templatePath: "Project+Templates.stencil"
+        ),
+        .file(
+            path: "Tuist/Dependencies.swift",
+            templatePath: "Dependencies.stencil"
+        ),
+        .file(
+            path: "App/AppDelegate/AppComponent.swift",
+            templatePath: "AppComponent.stencil"
+        ),
     ]
 )
 

@@ -60,12 +60,10 @@ final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPr
     }
     
     func didTapConfirm(with number: String, cvc: String, expiry: String) {
-        print("didTapConfirm🥶🥶🥶🥶🥶🥶🥶🥶")
         let info = AddPaymentMethodInfo(number: number, cvc: cvc, expriration: expiry)
         dependency.cardOnFileRepository.addCard(info: info)
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] method in
-                print("mainThread?: \(Thread.isMainThread)")
                 self?.listener?.addPaymentMethodDidAddCard(paymentMethod: method)
             })
             .disposed(by: disposeBag)
