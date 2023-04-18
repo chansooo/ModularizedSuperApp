@@ -81,29 +81,77 @@ extension Project {
             dependencies: implementDependencies + [.target(name: name)]
         )
         
-        let sampleApp = Target(name: "\(name)SampleApp",
+        let demoApp = Target(name: "\(name)DemoApp",
                                platform: platform,
                                product: .app,
-                               bundleId: "team.io.\(name)SampleApp",
+                               bundleId: "team.io.\(name)DemoApp",
                                deploymentTarget: .iOS(
                                  targetVersion: iOSTargetVersion,
                                  devices: [.iphone]
                                ),
                                infoPlist: .default,
-                               sources: ["./sampleApp/**"],
-                               dependencies: implementDependencies)
-//        
-//        let demoapp = makeAppTargets(name: "\(name)DemoApp",
-//                                     platform: platform,
-//                                     iOSTargetVersion: iOSTargetVersion,
-//                                     infoPlist: String(contentsOf:infoPlist),
-//                                     dependencies: [.target(name: name)])
-//
+                               sources: ["./DemoApp/**"],
+                               dependencies: implementDependencies + [.target(name: name)]
+        )
+
         return Project(name: name,
                        organizationName: organizationName,
                        targets: [interfaceTarget, implementTarget])
     }
     
+    public static func invertedDualTargetProjectWithDemoApp(
+        name: String,
+        platform: Platform,
+        iOSTargetVersion: String,
+        interfaceDependencies: [TargetDependency] = [],
+        implementDependencies: [TargetDependency] = [],
+        demoApp: Bool = false,
+        infoPlist: InfoPlist = .default
+    ) -> Project {
+
+        let interfaceTarget = makeInterfaceDynamicFrameworkTarget(
+            name: name,
+            platform: platform,
+            iOSTargetVersion: iOSTargetVersion,
+            dependencies: interfaceDependencies
+        )
+        
+        let implementTarget = makeImplementStaticLibraryTarget(
+            name: name,
+            platform: platform,
+            iOSTargetVersion: iOSTargetVersion,
+            dependencies: implementDependencies + [.target(name: name)]
+        )
+        
+        let demoApp = Target(
+            name: "\(name)DemoApp",
+            platform: .iOS,
+            product: .app,
+            bundleId: "com.chansoo.\(name)Demoapp",
+            deploymentTarget: .iOS(
+              targetVersion: iOSTargetVersion,
+              devices: [.iphone]
+            ),
+            infoPlist: InfoPlist.extendingDefault(
+                with:
+                    [
+                        "CFBundleDevelopmentRegion": "ko_KR",
+                        "CFBundleShortVersionString": "1.0",
+                        "CFBundleVersion": "1",
+                        "UILaunchStoryboardName": "LaunchScreen"
+                    ]
+                
+            ),
+            sources: ["./DemoApp/Sources/**"],
+            resources: ["./DemoApp/Resources/**"],
+            dependencies: implementDependencies + [.target(name: name)]
+        )
+
+        return Project(name: name,
+                       organizationName: organizationName,
+                       targets: [interfaceTarget, implementTarget, demoApp])
+    }
+
     public static func makeTarget(
         name: String,
         dependencies: [TargetDependency],
