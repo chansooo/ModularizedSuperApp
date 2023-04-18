@@ -74,9 +74,14 @@ let Feature = Template(
         ),
         // test파일 더미 추가
         .file(
-            path: .featureBasePath + "/\(name)UserInterface/Tests/dummy.swift",
+            path: .featureBasePath + "/\(name)Domain/Tests/dummy.swift",
             templatePath: "dummy.stencil"
         ),
+        .file(
+            path: .featureBasePath + "/\(name)Data/Tests/dummy.swift",
+            templatePath: "dummy.stencil"
+        ),
+
     ]
 )
 
