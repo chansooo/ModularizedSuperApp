@@ -58,8 +58,20 @@ let Feature = Template(
         .file(
             path: .featureBasePath + "/\(name)UserInterface/Interface/dummy.swift",
             templatePath: "dummy.stencil"
-        )
-        
+        ),
+        // UserInterface demoApp 추가
+        .file(
+            path: .featureBasePath + "/\(name)UserInterface/DemoApp/Sources/\(name)UserInterfaceAppDelegate.swift",
+            templatePath: "AppDelegate.stencil"
+        ),
+        .file(
+            path: .featureBasePath + "/\(name)UserInterface/DemoApp/Resources/LaunchScreen.storyboard",
+            templatePath: "LaunchScreen.stencil"
+        ),
+        .file(
+            path: .featureBasePath + "/\(name)UserInterface/DemoApp/Sources/\(name)UserInterfaceViewController.swift",
+            templatePath: "ViewController.stencil"
+        ),
     ]
 )
 
