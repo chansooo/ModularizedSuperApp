@@ -9,7 +9,7 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 import UtilityPlugin
 
-let project = Project.invertedDualTargetProject(
+let project = Project.invertedDualTargetProjectWithDemoApp(
     name: "TransportUserInterface",
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
