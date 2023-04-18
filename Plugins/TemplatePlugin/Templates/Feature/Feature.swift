@@ -72,6 +72,11 @@ let Feature = Template(
             path: .featureBasePath + "/\(name)UserInterface/DemoApp/Sources/\(name)UserInterfaceViewController.swift",
             templatePath: "ViewController.stencil"
         ),
+        // test파일 더미 추가
+        .file(
+            path: .featureBasePath + "/\(name)UserInterface/Tests/dummy.swift",
+            templatePath: "dummy.stencil"
+        ),
     ]
 )
 
