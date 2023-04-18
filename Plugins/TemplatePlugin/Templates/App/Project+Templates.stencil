@@ -81,24 +81,33 @@ extension Project {
             dependencies: implementDependencies + [.target(name: name)]
         )
         
-        let demoApp = Target(name: "\(name)DemoApp",
-                               platform: platform,
-                               product: .app,
-                               bundleId: "team.io.\(name)DemoApp",
-                               deploymentTarget: .iOS(
-                                 targetVersion: iOSTargetVersion,
-                                 devices: [.iphone]
-                               ),
-                               infoPlist: .default,
-                               sources: ["./DemoApp/**"],
-                               dependencies: implementDependencies + [.target(name: name)]
-        )
+        let testTarget = Target(
+             name: "\(name)Tests",
+             platform: platform,
+             product: .unitTests,
+             bundleId: "team.io.\(name)Tests",
+             deploymentTarget: .iOS(
+                 targetVersion: iOSTargetVersion,
+                 devices: [.iphone]
+             ),
+             infoPlist: .default,
+             sources: ["./Tests/**"],
+             dependencies: [
+                 .target(name: name),
+                 .target(name: name + "Impl"),
+                 
+             ]
+         )
 
         return Project(name: name,
                        organizationName: organizationName,
-                       targets: [interfaceTarget, implementTarget])
+                       targets: [interfaceTarget, implementTarget, testTarget])
     }
     
+    /// 현재 경로 내부의 Implement, Interface, DemoApp 세개의 디렉토리에 각각 Target을 가지는 Project를 만듭니다.
+    /// interface와 implement에 필요한 dependency를 각각 주입해줍니다.
+    /// implement는 자동으로 interface에 대한 종속성을 가지고 있습니다.
+    ///
     public static func invertedDualTargetProjectWithDemoApp(
         name: String,
         platform: Platform,
