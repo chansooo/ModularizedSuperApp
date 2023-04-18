@@ -31,8 +31,16 @@ import CSNetwork
 import CSNetworkImpl
 
 final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, ProfileHomeDependency, TransportHomeDependency, TopupDependency, AddPaymentMethodDependency  {
+    
+    var fetchBalanceUseCase: FetchBalanceUseCase
+    var fetchCardsUseCase: FetchCardsUseCase
+    var topupBalanceUseCase: TopupBalanceUseCase
+    
 
     var cardsOnFileRepository: CardOnFileRepository
+    
+    var addPaymentMethodUseCase: AddPaymentMethodUseCase
+    
     var superPayRepository: SuperPayRepository
     
     lazy var transportHomeBuildable: TransportHomeBuildable = {
@@ -62,7 +70,7 @@ final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, F
         
         let network = NetworkImp(session: URLSession(configuration: config))
         
-        self.cardsOnFileRepository = CardOnFileRepositoryImpl(
+        cardsOnFileRepository = CardOnFileRepositoryImpl(
             network: network,
             baseURL: BaseURL().financeBaseURL
         )
@@ -73,6 +81,13 @@ final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, F
             network: network,
             baseURL: BaseURL().financeBaseURL
         )
+        
+        self.addPaymentMethodUseCase = AddPaymentMethodUseCaseImpl(cardOnFileRepository: cardsOnFileRepository)
+        
+        self.fetchBalanceUseCase = FetchBalanceUseCaseImpl(superPayRepository: superPayRepository)
+        self.fetchCardsUseCase = FetchCardsUseCaseImpl(cardOnFileRepository: cardsOnFileRepository)
+        self.topupBalanceUseCase = TopupBalanceUseCaseImpl(superPayRepository: superPayRepository)
+        
         self.rootViewcontroller = rootViewcontroller
         super.init(dependency: dependency)
     }

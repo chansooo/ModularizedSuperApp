@@ -28,7 +28,7 @@ protocol EnterAmountPresentable: Presentable {
 
 protocol EnterAmountInteractorDependency {
     var selectedPaymentMethod: BehaviorRelay<PaymentMethod> { get }
-    var superPayRepository: SuperPayRepository { get }
+    var topupBalanceUseCase: TopupBalanceUseCase { get }
 }
 
 final class EnterAmountInteractor: PresentableInteractor<EnterAmountPresentable>, EnterAmountInteractable, EnterAmountPresentableListener {
@@ -78,7 +78,7 @@ final class EnterAmountInteractor: PresentableInteractor<EnterAmountPresentable>
     func didTapTopup(with amount: Double) {
         presenter.startLoading()
         
-        dependency.superPayRepository.topup(
+        dependency.topupBalanceUseCase.exetuce(
             amount: amount,
             paymentMethodID: dependency.selectedPaymentMethod.value.id
         )

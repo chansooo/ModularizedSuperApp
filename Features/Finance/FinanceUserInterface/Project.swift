@@ -15,15 +15,10 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
         .Feature.Finance.Domain.Interface,
-//        .Feature.Finance.Data.Interface,
         
         .Core.RIBsUtil,
-//        .Core.SuperUI,
-//        .Core.DefaultsStore,
         
         .ThirdParty.RIBs,
-//        .ThirdParty.RxSwift,
-//        .ThirdParty.RxRelay,
     ],
     implementDependencies: [
         .Feature.Finance.Domain.Interface,

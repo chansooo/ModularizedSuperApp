@@ -15,12 +15,12 @@ import RIBsUtil
 public protocol AddPaymentMethodDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
-    var cardsOnFileRepository: CardOnFileRepository { get }
+    var addPaymentMethodUseCase: AddPaymentMethodUseCase { get }
 }
 
 final class AddPaymentMethodComponent: Component<AddPaymentMethodDependency>, AddPaymentMethodInteractorDependency {
     
-    var cardOnFileRepository: CardOnFileRepository { dependency.cardsOnFileRepository } // 부모에서 받아올랭
+    var addPaymentMethodUseCase: AddPaymentMethodUseCase { dependency.addPaymentMethodUseCase }
 }
 
 // MARK: - Builder

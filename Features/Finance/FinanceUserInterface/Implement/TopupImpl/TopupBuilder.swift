@@ -6,26 +6,29 @@
 //
 
 import RIBs
-import FinanceData
+
 import FinanceDomain
 import FinanceUserInterface
 import RxRelay
+import RxSwift
 
 public protocol TopupDependency: Dependency {
     // TODO: Make sure to convert the variable into lower-camelcase.
     var topupBaseViewController: ViewControllable { get }
-    var cardsOnFileRepository: CardOnFileRepository { get }
-    var superPayRepository: SuperPayRepository { get }
+
     var addPaymentMethodBuildable: AddPaymentMethodBuildable { get }
+    
+    var fetchCardsUseCase: FetchCardsUseCase { get }
+    var topupBalanceUseCase: TopupBalanceUseCase { get }
+
 }
 
 final class TopupComponent: Component<TopupDependency>, TopupInteractorDependency, EnterAmountDependency, CardOnFileDependency {
     
-    var superPayRepository: SuperPayRepository { dependency.superPayRepository }
+    var fetchCardsUseCase: FetchCardsUseCase { dependency.fetchCardsUseCase }
+    var topupBalanceUseCase: TopupBalanceUseCase { dependency.topupBalanceUseCase }
     
     var selectedPaymentMethod: BehaviorRelay<PaymentMethod> { paymentMethodStream }
-    
-    var cardsOnFileRepository: CardOnFileRepository { dependency.cardsOnFileRepository }
     
     var addPaymentMethodBuildable: AddPaymentMethodBuildable { dependency.addPaymentMethodBuildable }
     
