@@ -15,4 +15,7 @@ final class CSNetworkTests: XCTestCase {
         let number = 1
         XCTAssertEqual(1, number)
     }
+    func test_2test() {
+        XCTAssertTrue(true)
+    }
 }
