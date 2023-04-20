@@ -13,11 +13,11 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
-	  - name: Install Tuist
+    - name: Install Tuist
       run: curl -Ls https://install.tuist.io | bash
-	  - name: Fetch Swift Packages
+    - name: Fetch Swift Packages
       run: tuist fetch
-	  - name: Generate Project
-		  run: tuist generate
+    - name: Generate Project
+      run: tuist generate
     - name: Build and Test
       run:  xcodebuild test -project ModularizedSuperApp.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 13 Pro,OS=latest' build test
