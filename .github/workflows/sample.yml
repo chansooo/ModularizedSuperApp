@@ -12,8 +12,7 @@ jobs:
     name: test action
     runs-on: macos-latest
     steps:
-      - name: Test
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 	    - name: Install Tuist
       	run: curl -Ls https://install.tuist.io | bash
 	    - name: Fetch Swift Packages
