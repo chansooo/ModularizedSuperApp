@@ -8,9 +8,11 @@
 
 import XCTest
 import Foundation
+@testable import CSNetwork
 
-final class CSNetworkTests: XCTest {
+final class CSNetworkTests: XCTestCase {
     func test_테스트() {
-        XCTAssertTrue(true)
+        let number = 1
+        XCTAssertEqual(1, number)
     }
 }
