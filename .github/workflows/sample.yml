@@ -21,3 +21,5 @@ jobs:
       run: tuist generate
     - name: Build and Test
       run:  xcodebuild test -workspace ModularizedSuperApp.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 13 Pro,OS=latest' build test
+    - name: Build and Test
+      run:  xcodebuild test -workspace ModularizedSuperApp.xcworkspace -scheme ModularizedSuperApp-Workspace -destination 'platform=iOS Simulator,name=iPhone 13 Pro,OS=latest' build test
