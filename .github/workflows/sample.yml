@@ -3,7 +3,7 @@ name: ModulariedSuperApp
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, github-action-적용 ]
   pull_request: 
     branches: [ main ]
 
@@ -20,4 +20,4 @@ jobs:
     - name: Generate Project
       run: tuist generate
     - name: Build and Test
-      run:  xcodebuild test -project ModularizedSuperApp.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 13 Pro,OS=latest' build test
+      run:  xcodebuild test -workspace ModularizedSuperApp.xcworkspace -scheme ModularizedSuperApp-Workspace -destination 'platform=iOS Simulator,name=iPhone 13 Pro,OS=latest' build test
