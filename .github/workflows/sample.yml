@@ -2,8 +2,6 @@
 name: ModulariedSuperApp
 
 on:
-  push:
-    branches: [ main, github-action-적용 ]
   pull_request: 
     branches: [ main ]
 
