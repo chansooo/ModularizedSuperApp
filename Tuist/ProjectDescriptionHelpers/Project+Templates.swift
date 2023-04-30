@@ -54,7 +54,7 @@ extension Project {
                        targets: targets)
     }
         
-    /// 현재 경로 내부의 Implement, Interface 두개의 디렉토리에 각각 Target을 가지는 Project를 만듭니다.
+    /// 현재 경로 내부의 Implement, Interface, test 세개의 디렉토리에 각각 Target을 가지는 Project를 만듭니다.
     /// interface와 implement에 필요한 dependency를 각각 주입해줍니다.
     /// implement는 자동으로 interface에 대한 종속성을 가지고 있습니다.
     public static func invertedDualTargetProject(

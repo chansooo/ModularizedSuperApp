@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AddPaymentMethodUserInterface.swift
 //  
 //
 //  Created by 김찬수 on 2023/03/21.
@@ -16,7 +16,6 @@ public protocol AddPaymentMethodBuildable: Buildable {
 }
 
 public protocol AddPaymentMethodListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
     func addPaymentMethodDidTapClose()
     func addPaymentMethodDidAddCard(paymentMethod: PaymentMethod)
 }
